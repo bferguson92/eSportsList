@@ -6,4 +6,11 @@
     <string name="enter_team">ENTER TEAM</string>
     <string name="enter_username">ENTER USERNAME</string>
     <string name="save">SAVE</string>
+    <string name="team">TEAM:</string>
+    <string name="game">GAME:</string>
+    <string name="nation">NATION:</string>
+    <string name="real_name">REAL NAME:</string>
+    <string name="edit">EDIT</string>
+    <string name="delete">DELETE</string>
+    <string name="update">UPDATE</string>
 </resources>

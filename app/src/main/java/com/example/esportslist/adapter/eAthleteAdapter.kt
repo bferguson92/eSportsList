@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.esportslist.R
 import com.example.esportslist.model.eAthlete
 
-class eAthleteAdapter(val list: List<eAthlete>) :
+class eAthleteAdapter(private val list: List<eAthlete>, private val delgator: eAthleteDelegate):
     RecyclerView.Adapter<eAthleteAdapter.CustomViewHolder>() {
+    interface eAthleteDelegate{
+        fun getMoreInfo(eathlete: eAthlete)
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,6 +30,9 @@ class eAthleteAdapter(val list: List<eAthlete>) :
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.apply {
             handleText.text = list[position].handle
+            handleText.setOnClickListener{
+                delgator.getMoreInfo(list[position])
+            }
         }
     }
 

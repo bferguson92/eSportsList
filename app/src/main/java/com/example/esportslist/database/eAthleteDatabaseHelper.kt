@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.esportslist.model.eAthlete
 
 class eAthleteDatabaseHelper(
@@ -25,15 +26,15 @@ class eAthleteDatabaseHelper(
         onCreate(database)
     }
 
-    fun insert(athlete: eAthlete){
+    fun insert(name: String, game: String, handle: String, team: String, nation: String){
         val values = ContentValues()
 
         values.apply {
-            put(COLUMN_NAME, athlete.name)
-            put(COLUMN_GAME, athlete.game)
-            put(COLUMN_HANDLE, athlete.handle)
-            put(COLUMN_TEAM, athlete.team)
-            put(COLUMN_NATIONALITY, athlete.nationality)
+            put(COLUMN_NAME, name)
+            put(COLUMN_GAME, game)
+            put(COLUMN_HANDLE, handle)
+            put(COLUMN_TEAM, team)
+            put(COLUMN_NATIONALITY, nation)
         }
 
         val database = this.writableDatabase
@@ -44,6 +45,32 @@ class eAthleteDatabaseHelper(
     fun getEAthletes(): Cursor {
         val database = this.readableDatabase
         return database.rawQuery("SELECT * FROM $TABLE_NAME", null)
+    }
+
+    fun removeEAthlete(eathlete: eAthlete){
+        val database = this.writableDatabase
+        val id: Array<out String> = arrayOf(eathlete.id.toString())
+
+        database.delete(TABLE_NAME, "$COLUMN_ID=?", id)
+    }
+
+    fun updateInfo(eathlete: eAthlete){
+        val database = this.writableDatabase
+        val values = ContentValues()
+        val id: Array<out String> = arrayOf(eathlete.id.toString())
+        Log.d("TAG_EATHLETE", "${eathlete.handle} | ${eathlete.game}")
+
+        values.apply {
+            put(COLUMN_NAME, eathlete.name)
+            put(COLUMN_GAME, eathlete.game)
+            put(COLUMN_HANDLE, eathlete.handle)
+            put(COLUMN_TEAM, eathlete.team)
+            put(COLUMN_NATIONALITY, eathlete.nationality)
+        }
+
+        Log.d("TAG_EATHLETE", "$values")
+
+        database.update(TABLE_NAME, values, "$COLUMN_ID=?", id)
     }
 
     companion object {

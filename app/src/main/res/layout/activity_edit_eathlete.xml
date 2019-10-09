@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.NewEAthlete">
+    tools:context=".view.EditEAthlete">
 
     <ImageView
         android:id="@+id/ivPic"
@@ -14,51 +14,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <EditText
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_name"
-        app:layout_constraintTop_toBottomOf="@+id/etHandle"/>
-
-    <EditText
-        android:id="@+id/etGame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_game"
-        app:layout_constraintTop_toBottomOf="@id/etName"/>
-
-    <EditText
-        android:id="@+id/etHandle"
+        android:id="@+id/update_handle"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:textColor="#000000"
         android:gravity="center|start"
-        android:hint="@string/enter_username"
         app:layout_constraintStart_toEndOf="@+id/ivPic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/enter_username" />
+
 
     <EditText
-        android:id="@+id/etTeam"
+        android:id="@+id/update_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_team"
-        app:layout_constraintTop_toBottomOf="@+id/etNation"/>
+        android:hint="@string/enter_name"
+        app:layout_constraintTop_toBottomOf="@id/update_handle" />
 
     <EditText
-        android:id="@+id/etNation"
+        android:id="@+id/update_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_game"
+        app:layout_constraintTop_toBottomOf="@id/update_name" />
+
+    <EditText
+        android:id="@+id/update_nation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_nationality"
-        app:layout_constraintTop_toBottomOf="@+id/etGame"/>
+        app:layout_constraintTop_toBottomOf="@id/update_game" />
 
-    <Button
-        android:id="@+id/btnCreate"
+    <EditText
+        android:id="@+id/update_team"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:hint="@string/enter_team"
+        app:layout_constraintTop_toBottomOf="@id/update_nation" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="parent"/>
-    
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

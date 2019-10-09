@@ -14,7 +14,8 @@ import com.example.esportslist.model.eAthlete
 import com.example.esportslist.util.ErrorLogger
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), eAthleteAdapter.eAthleteDelegate {
+
     private lateinit var dbHelper: eAthleteDatabaseHelper
     private val eAthleteList = mutableListOf<eAthlete>()
 
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         dbHelper = eAthleteDatabaseHelper(this, null)
         populateList()
 
-        rvDisplayEAthletes.adapter = eAthleteAdapter(eAthleteList)
+        rvDisplayEAthletes.adapter = eAthleteAdapter(eAthleteList, this)
         rvDisplayEAthletes.layoutManager = LinearLayoutManager(this)
 
         val itemDecorator = DividerItemDecoration(this, LinearLayout.VERTICAL)
@@ -57,15 +58,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addToList(dbCursor: Cursor){
+    private fun addToList(dbCursor: Cursor){
+        val id = dbCursor.getInt(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_ID))
         val name = dbCursor.getString(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_NAME))
         val game = dbCursor.getString(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_GAME))
         val handle = dbCursor.getString(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_HANDLE))
         val team = dbCursor.getString(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_TEAM))
         val nation = dbCursor.getString(dbCursor.getColumnIndex(eAthleteDatabaseHelper.COLUMN_NATIONALITY))
 
-        val athlete = eAthlete(name, game, handle, team, nation)
+        val athlete = eAthlete(id, name, handle, game, team, nation)
 
         eAthleteList.add(athlete)
+    }
+
+    override fun getMoreInfo(eathlete: eAthlete) {
+        val intent = Intent(this, eAthleteInfo::class.java)
+        intent.putExtra("eAthlete", eathlete)
+        startActivity(intent)
     }
 }

@@ -27,10 +27,10 @@ class NewEAthlete : AppCompatActivity() {
             val team = etTeam.text.toString()
             val nation = etNation.text.toString()
 
-            val athlete = eAthlete(name, game, handle, team, nation)
+           // val athlete = eAthlete(name, game, handle, team, nation)
 
             try {
-                dbHealper.insert(athlete)
+                dbHealper.insert(name,game,handle,team,nation)
             } catch (throwable: Throwable){
                 ErrorLogger.LogError(throwable)
             }
