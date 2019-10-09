@@ -4,8 +4,6 @@ import android.content.Intent
 import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.esportslist.R
 import com.example.esportslist.adapter.eAthleteAdapter
@@ -35,8 +33,6 @@ class MainActivity : AppCompatActivity(), eAthleteAdapter.eAthleteDelegate {
         rvDisplayEAthletes.adapter = eAthleteAdapter(eAthleteList, this)
         rvDisplayEAthletes.layoutManager = LinearLayoutManager(this)
 
-        val itemDecorator = DividerItemDecoration(this, LinearLayout.VERTICAL)
-        rvDisplayEAthletes.addItemDecoration(itemDecorator)
 
     }
 
@@ -75,5 +71,11 @@ class MainActivity : AppCompatActivity(), eAthleteAdapter.eAthleteDelegate {
         val intent = Intent(this, eAthleteInfo::class.java)
         intent.putExtra("eAthlete", eathlete)
         startActivity(intent)
+    }
+
+    override fun addToFavorites(holder: eAthleteAdapter.CustomViewHolder) {
+        holder.apply {
+            image.setImageResource(R.drawable.ic_favorite_checked)
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.esportslist.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.esportslist.R
@@ -12,6 +13,7 @@ class eAthleteAdapter(private val list: List<eAthlete>, private val delgator: eA
     RecyclerView.Adapter<eAthleteAdapter.CustomViewHolder>() {
     interface eAthleteDelegate{
         fun getMoreInfo(eathlete: eAthlete)
+        fun addToFavorites(holder:CustomViewHolder)
     }
 
     override fun onCreateViewHolder(
@@ -33,11 +35,15 @@ class eAthleteAdapter(private val list: List<eAthlete>, private val delgator: eA
             handleText.setOnClickListener{
                 delgator.getMoreInfo(list[position])
             }
+            image.setOnClickListener{
+                delgator.addToFavorites(holder)
+            }
         }
     }
 
 
     class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val handleText: TextView = view.findViewById(R.id.tvHandle)
+        val image: ImageView = view.findViewById(R.id.favorite_button_image)
     }
 }

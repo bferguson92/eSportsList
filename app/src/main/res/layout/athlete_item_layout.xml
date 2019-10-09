@@ -9,28 +9,29 @@
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/ivPic"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:src="@drawable/ic_picture"
        />
 
     <TextView
         android:id="@+id/tvHandle"
         android:gravity="center|start"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_weight="1"
         tools:text="handle" />
+
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/ic_favourite_uncheck"/>
+        android:id="@+id/favorite_button_image"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/ic_favorite_unchecked"/>
     </LinearLayout>
 
 
