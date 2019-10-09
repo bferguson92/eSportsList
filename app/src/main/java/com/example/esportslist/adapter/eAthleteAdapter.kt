@@ -13,7 +13,7 @@ class eAthleteAdapter(val list: List<eAthlete>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): eAthleteAdapter.CustomViewHolder {
+    ): CustomViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.athlete_item_layout, parent, false)
         return CustomViewHolder(view)
@@ -23,17 +23,14 @@ class eAthleteAdapter(val list: List<eAthlete>) :
         return list.size
     }
 
-    override fun onBindViewHolder(holder: eAthleteAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.apply {
-
+            handleText.text = list[position].handle
         }
     }
 
+
     class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameText: TextView = view.findViewById(R.id.tvName)
-        val gameText: TextView = view.findViewById(R.id.tvGame)
         val handleText: TextView = view.findViewById(R.id.tvHandle)
-        val teamText: TextView = view.findViewById(R.id.tvTeam)
-        val nationText: TextView = view.findViewById(R.id.tvNation)
     }
 }

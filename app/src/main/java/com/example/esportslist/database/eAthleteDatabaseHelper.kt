@@ -1,10 +1,11 @@
 package com.example.esportslist.database
 
+import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import java.util.concurrent.CopyOnWriteArrayList
-import java.util.concurrent.CountDownLatch
+import com.example.esportslist.model.eAthlete
 
 class eAthleteDatabaseHelper(
     private val context: Context,
@@ -14,7 +15,7 @@ class eAthleteDatabaseHelper(
     override fun onCreate(database: SQLiteDatabase) {
         val createTable =
             "CREATE TABLE $TABLE_NAME($COLUMN_ID INTEGER PRIMARY KEY, $COLUMN_HANDLE TEXT, " +
-                    "$COLUMN_NAME TEXT, $COLUMN_GAME TEXT. $COLUMN_TEAM TEXT, $COLUMN_NATIONALITY TEXT)"
+                    "$COLUMN_NAME TEXT, $COLUMN_GAME TEXT, $COLUMN_TEAM TEXT, $COLUMN_NATIONALITY TEXT)"
 
         database.execSQL(createTable)
     }
@@ -22,6 +23,27 @@ class eAthleteDatabaseHelper(
     override fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         database.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(database)
+    }
+
+    fun insert(athlete: eAthlete){
+        val values = ContentValues()
+
+        values.apply {
+            put(COLUMN_NAME, athlete.name)
+            put(COLUMN_GAME, athlete.game)
+            put(COLUMN_HANDLE, athlete.handle)
+            put(COLUMN_TEAM, athlete.team)
+            put(COLUMN_NATIONALITY, athlete.nationality)
+        }
+
+        val database = this.writableDatabase
+        database.insert(TABLE_NAME, null, values)
+        database.close()
+    }
+
+    fun getEAthletes(): Cursor {
+        val database = this.readableDatabase
+        return database.rawQuery("SELECT * FROM $TABLE_NAME", null)
     }
 
     companion object {
@@ -36,5 +58,4 @@ class eAthleteDatabaseHelper(
         val COLUMN_TEAM = "team"
         val COLUMN_NATIONALITY = "nationality"
     }
-
 }

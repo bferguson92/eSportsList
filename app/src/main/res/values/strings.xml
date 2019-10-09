@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">eSportsList</string>
+    <string name="enter_name">ENTER NAME</string>
+    <string name="enter_game">ENTER GAME</string>
+    <string name="enter_nationality">ENTER NATIONALITY</string>
+    <string name="enter_team">ENTER TEAM</string>
+    <string name="enter_username">ENTER USERNAME</string>
+    <string name="save">SAVE</string>
 </resources>

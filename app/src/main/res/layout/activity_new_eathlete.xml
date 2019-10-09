@@ -6,4 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".view.NewEAthlete">
 
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_name"
+        app:layout_constraintTop_toBottomOf="@+id/etHandle"/>
+
+    <EditText
+        android:id="@+id/etGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_game"
+        app:layout_constraintTop_toBottomOf="@id/etName"/>
+
+    <EditText
+        android:id="@+id/etHandle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/etTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_team"
+        app:layout_constraintTop_toBottomOf="@+id/etNation"/>
+
+    <EditText
+        android:id="@+id/etNation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_nationality"
+        app:layout_constraintTop_toBottomOf="@+id/etGame"/>
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
